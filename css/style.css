@@ -136,6 +136,7 @@ section.game-over.show {
     border: 2px dashed #aaa;
     padding: 1rem;
     border-radius: 10px;
+    transition: all 1s ;
 }
 
 .previous p {
@@ -146,6 +147,7 @@ section.game-over.show {
     border: 2px dashed #aaa;
     padding: 1rem;
     border-radius: 10px;
+    transition: all 1s ;
 }
 
 .current p {

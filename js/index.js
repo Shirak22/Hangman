@@ -1,7 +1,10 @@
- window.onload = ()=> {
+let data = 'BIL,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,recognition,leadership,setting,shirt,reputation,dirt,introduction,reflction,direction,finding,truth,device,information';
+ 
 
+
+window.onload = ()=> {
      let gameSettings = {
-         words: 'BIL,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,recognition,leadership,setting,shirt,reputation,dirt,introduction,reflction,direction,finding,truth,device,information',
+         words: data,
          maxAtempts: 5,
          randomWord: '',
          guessedLetters: [],
