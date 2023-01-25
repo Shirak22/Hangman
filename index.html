@@ -11,8 +11,23 @@
     <section class="game-over">
         <h1>Game over!</h1>
         <p>The word we were looking for was <b></b>.</p>
-        <a onClick = "startGame()" href="#">Restart</a>
+        <a id="restart" href="#">Restart</a>
     </section>
+    <aside class="scores">
+        <section class="current">
+            <p>Current score: </p>
+            <p class="score"></p>
+            <p class="totalGuessed__words"></p>
+        </section>
+        <section class="previous">
+            <p>Previous score: </p>
+            <p class="pre__score"></p>
+            <p class="pre__totalGuessed__words"></p>
+        </section>
+        
+
+    </aside>
+   
     <main>
         <figure class="">
             <svg width="501" height="565" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,8 +42,9 @@
         <footer>
             <ul class="nomatch"></ul>
             <ul class="word"></ul>
-        <p>press <b>ENTER</b> key on your keyboard to start/reset</p>
+        <p class="caption">press <b>ENTER</b> key on your keyboard to start/reset</p>
     </main>
+
     <script src="js/index.js"></script>
 </body>
 </html>

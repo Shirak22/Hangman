@@ -120,3 +120,34 @@ section.game-over.show {
 .game-over > a:hover {
     opacity: 1;
 }
+
+.scores{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem;
+}
+.scores *{
+    margin: 0;
+}
+.previous{
+    margin-top: 1rem;
+    border: 2px dashed #aaa;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.previous p {
+    color: rgb(200, 171, 171);
+}
+.current{
+    margin-top: 1rem;
+    border: 2px dashed #aaa;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.current p {
+    color: #9c4848;
+}
