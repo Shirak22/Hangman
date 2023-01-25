@@ -1,23 +1,3 @@
-/**
- HÄNGA GUBBE
-
-- lista med alfabetet
-- lista med gissade bokstäver
-- slumpa ut random ord
-- lista med ord
-- max antal gissningar
-- antal gissningar anv gjort
-VG
-- poängräknare
-
- För att toggla SVG:en
- document.querySelector('figure').classList.add('scaffold')
- document.querySelector('figure').classList.add('head')
- document.querySelector('figure').classList.add('body')
- document.querySelector('figure').classList.add('arms')
- document.querySelector('figure').classList.add('legs')
-
- */
 
     let words = 'BIL,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,recognition,leadership,setting,shirt,reputation,dirt,introduction,reflction,direction,finding,truth,device,information';
     let maxAtempts = 5; 
