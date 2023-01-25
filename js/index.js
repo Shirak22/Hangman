@@ -18,8 +18,9 @@ VG
  document.querySelector('figure').classList.add('legs')
 
  */
-
+window.onload = ()=> {
     let words = 'BIL,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,recognition,leadership,setting,shirt,reputation,dirt,introduction,reflction,direction,finding,truth,device,information';
+    
     let maxAtempts = 5; 
     let points = 0;
    
@@ -50,8 +51,7 @@ VG
         }); 
     }
 
-    
-
+  
     //It makes blanks for every letter in word 
     function makeBlanks(){
          maxAtempts = 5; 
@@ -98,6 +98,8 @@ VG
     
         return letterMatch;
     }
+
+
     //updates the UI in the Dom it takes 2 parameters the array of letters and the (DOM place) css class in string format
     function renderLettersInDom(Arr,place = 'word'){
         document.querySelector(`.${place}`).innerHTML = '' ; 
@@ -131,6 +133,7 @@ VG
 
         }
     }
+
     //Game logic 
     function gameRules(arr,word){
         if(arr.length <= maxAtempts){
@@ -145,3 +148,5 @@ VG
         active == true ? place.classList.add('show') : place.classList.remove('show');
         place.children[1].innerHTML = `The word we were looking for was <b>${word}</b>.`;
     }
+}
+   
