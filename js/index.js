@@ -22,13 +22,13 @@ window.onload = ()=> {
     let words = 'BIL,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,recognition,leadership,setting,shirt,reputation,dirt,introduction,reflction,direction,finding,truth,device,information';
     
     let maxAtempts = 5; 
-    let points = 0;
-   
+    
     let randomWord = setRandomWord(words);
-    //gissade_bokstäver 
+    //guessed Letters 
     let guessedLetters = [];
     let wrongGuesses = []; 
  
+    
     
     window.addEventListener('keydown', (e)=>{
         if(e.key === 'Enter') {
@@ -39,7 +39,7 @@ window.onload = ()=> {
     
     function startGame(){
         gameOver('Hidden',false);
-        makeBlanks();
+        reset();
         renderLettersInDom(wrongGuesses, 'nomatch');
         renderLettersInDom(guessedLetters);
     
@@ -53,11 +53,10 @@ window.onload = ()=> {
 
   
     //It makes blanks for every letter in word 
-    function makeBlanks(){
+    function reset(){
          maxAtempts = 5; 
          points = 0;
          randomWord = setRandomWord(words);
-        //gissade_bokstäver 
          guessedLetters = [];
          wrongGuesses = []; 
          document.querySelector('figure').removeAttribute('class'); 
