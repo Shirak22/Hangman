@@ -1,5 +1,4 @@
-let data = 'BIL,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,recognition,leadership,setting,shirt,reputation,dirt,introduction,reflction,direction,finding,truth,device,information';
- 
+import {data} from './data.js'; //importing the words from external file 
 
 
 window.onload = ()=> {
@@ -25,14 +24,13 @@ window.onload = ()=> {
     });
  
     
-    function startGame(){
+    function startGame() {
         reset();
-        gameSettings.preScore = saveState(gameSettings.score,state = 'get');
         window.addEventListener('keydown', (e) => {
             checkLetterExistens(gameSettings, eventCheck(e.key));
             displayUI();
             gameRules(gameSettings);
-        }); 
+        });
     }
 
   
@@ -68,8 +66,8 @@ window.onload = ()=> {
         document.querySelector('.score').innerHTML = `Score: <b>${gameSettings.score}</b>`;
         document.querySelector('.totalGuessed__words').innerHTML = `Words: <b>${gameSettings.totalWordsGuesses}</b>`;
         
-        document.querySelector('.pre__score').innerHTML = `Score: <b>${saveState('score','','get')}</b>`;
-        document.querySelector('.pre__totalGuessed__words').innerHTML = `Words: <b>${saveState('words','','get')}</b>`;
+        document.querySelector('.pre__score').innerHTML = `Score: <b>${getState('score')}</b>`;
+        document.querySelector('.pre__totalGuessed__words').innerHTML = `Words: <b>${getState('words')}</b>`;
         
         document.querySelector('.caption').innerHTML = `Guessed Words: `;
         gameSettings.previousGuessedWords.forEach(word=>{
@@ -176,13 +174,18 @@ window.onload = ()=> {
     }
     
 //saving in localstorage in the broweser it takes (  string(var name in storage),  string(var value),  string(takes 'set' to save and 'get' to get the value)  )
-    function saveState(score,value,state = 'set'){
-        if(state.toString() === 'set'){
+    function saveState(score,value){
+
             localStorage.setItem(score,value.toString()); 
-        }else if(state.toString() === 'get'){
-           return localStorage.getItem(score);
-        }
+       
+
     }
+    function getState(score){
+           return localStorage.getItem(score);
+    
+    }
+
+
 
 }//End
    

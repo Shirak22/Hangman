@@ -1,0 +1,1 @@
+export let data  = `BIL,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,recognition,leadership,setting,shirt,reputation,dirt,introduction,reflction,direction,finding,truth,device,information`;
