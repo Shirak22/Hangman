@@ -1,1 +1,3 @@
-export let data  = `BIL,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,recognition,leadership,setting,shirt,reputation,dirt,introduction,reflction,direction,finding,truth,device,information`;
+ export let data  = `CAR,TRUCK,candidate,teaching,assignment,menu,apartment,quantity,patience,leadership,setting,shirt,dirt,reflection,direction,truth,device`;
+
+// export let data  = ['Javascript', 'css', 'html', 'git' ];
