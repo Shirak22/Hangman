@@ -1,21 +1,23 @@
 import {data} from './data.js'; //importing the words from external file 
 
-
-window.onload = ()=> {
-     let gameSettings = {
-         words: data,
-         maxAtempts: 5,
-         randomWord: '',
-         guessedLetters: [],
-         wrongGuesses: [],
-         score: 0,
-         preScore: 0,
-         previousGuessedWords: [],
-         totalWordsGuesses: 0
-     }
-
-    let enterState = false; 
-    document.querySelector('#restart').addEventListener('click',reset);
+ window.onload = ()=> {
+    let gameSettings = {
+            words: data,
+            maxAtempts: 5,
+            randomWord: '',
+            guessedLetters: [],
+            wrongGuesses: [],
+            score: 0,
+            preScore: 0,
+            previousGuessedWords: [],
+            totalWordsGuesses: 0
+    }
+    let timerInterval; 
+    let enterState = false;
+    document.querySelector('#restart').addEventListener('click',()=>{
+        reset();
+        setTimer();
+    });
     window.addEventListener('keydown', (e)=>{
         if(e.key === 'Enter' && enterState === false) { //Enter on start 
             startGame();
@@ -25,22 +27,21 @@ window.onload = ()=> {
  
     
     function startGame() {
-        reset();
+            reset();
+            setTimer();
         window.addEventListener('keydown', (e) => {
             checkLetterExistens(gameSettings, eventCheck(e.key));
             displayUI();
             gameRules(gameSettings);
         });
     }
-
-  
     //It makes blanks for every letter in word and resets to default value and generate new word
     function reset(){
         
          gameOver('Hidden',false); //hide the gameover screen
          gameSettings.maxAtempts = 5; 
          gameSettings.guessedLetters = [];
-         gameSettings.wrongGuesses = []; 
+         gameSettings.wrongGuesses = [];
          gameSettings.randomWord = setRandomWord(gameSettings.words);
           document.querySelector('figure').removeAttribute('class'); 
          document.querySelector('figure').setAttribute('class', ' ');
@@ -68,6 +69,8 @@ window.onload = ()=> {
         
         document.querySelector('.pre__score').innerHTML = `Score: <b>${getState('score')}</b>`;
         document.querySelector('.pre__totalGuessed__words').innerHTML = `Words: <b>${getState('words')}</b>`;
+        document.querySelector('.pre__time').innerHTML = `${getState('time')}`;
+
         
         document.querySelector('.caption').innerHTML = `Guessed Words: `;
         gameSettings.previousGuessedWords.forEach(word=>{
@@ -107,7 +110,7 @@ window.onload = ()=> {
     }
     //returns random word 
     function setRandomWord(wordString) {
-        let words = wordString.toLowerCase().split(',');
+         let words = wordString.toLowerCase().split(',');
         return words[Math.floor(Math.random() * words.length)];
     }
     //rendering the SVG classes 
@@ -138,6 +141,7 @@ window.onload = ()=> {
         }else if(gameSettings.wrongGuesses.length > 5 ){
             saveState('score',gameSettings.score);
             saveState('words',gameSettings.totalWordsGuesses);
+            setPreviousTime();
             gameOver(gameSettings.randomWord,true);
             gameSettings.score = 0;
             gameSettings.totalWordsGuesses = 0;
@@ -156,7 +160,6 @@ window.onload = ()=> {
         place.children[1].innerHTML = `The word we were looking for was <b style ='color:#9c4848;'>${word}</b>.`;
         enterState = false;
     }
-
     //score points logic 
     function scoreLogic(gameSettings){
         let wrongLettersTotal = gameSettings.wrongGuesses.length; 
@@ -171,8 +174,7 @@ window.onload = ()=> {
         }
         gameSettings.totalWordsGuesses++;
         gameSettings.previousGuessedWords.push(gameSettings.randomWord);
-    }
-    
+    }    
 //saving in localstorage in the broweser it takes (  string(var name in storage),  string(var value),  string(takes 'set' to save and 'get' to get the value)  )
     function saveState(score,value){
 
@@ -184,8 +186,33 @@ window.onload = ()=> {
            return localStorage.getItem(score);
     
     }
+//setting timer  for every game and reset it if it called again
+    function setTimer(){
+        clearInterval(timerInterval);
+        document.querySelector('.time').innerText = '0';
+        let time = Date.now();
 
+        timerInterval = setInterval(()=>{
 
+            let now = Math.round((Date.now() - time)/1000);
 
+            document.querySelector('.time').innerText = now;
+            console.log(now);
+
+        }, 1000);
+
+    }
+
+    //saves the time state on gameover and return it as previous time 
+    function setPreviousTime(){
+      let preTime =  parseInt(document.querySelector('.time').innerText); 
+      saveState('time',preTime); 
+    }
 }//End
    
+
+
+
+
+
+
