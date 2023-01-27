@@ -14,9 +14,11 @@ import {data} from './data.js'; //importing the words from external file
     }
     let timerInterval; 
     let enterState = false;
+    let gameOverState = false; 
     document.querySelector('#restart').addEventListener('click',()=>{
         reset();
         setTimer();
+        gameOverState = false;
     });
     window.addEventListener('keydown', (e)=>{
         if(e.key === 'Enter' && enterState === false) { //Enter on start 
@@ -29,15 +31,18 @@ import {data} from './data.js'; //importing the words from external file
     function startGame() {
             reset();
             setTimer();
+           
         window.addEventListener('keydown', (e) => {
-            checkLetterExistens(gameSettings, eventCheck(e.key));
-            displayUI();
-            gameRules(gameSettings);
+            if(!gameOverState){
+                checkLetterExistens(gameSettings, eventCheck(e.key));
+                displayUI();
+                gameRules(gameSettings);
+            }
+           
         });
     }
     //It makes blanks for every letter in word and resets to default value and generate new word
     function reset(){
-        
          gameOver('Hidden',false); //hide the gameover screen
          gameSettings.maxAtempts = 5; 
          gameSettings.guessedLetters = [];
@@ -143,6 +148,7 @@ import {data} from './data.js'; //importing the words from external file
             saveState('words',gameSettings.totalWordsGuesses);
             setPreviousTime();
             gameOver(gameSettings.randomWord,true);
+            gameOverState = true;
             gameSettings.score = 0;
             gameSettings.totalWordsGuesses = 0;
             gameSettings.previousGuessedWords = [];
